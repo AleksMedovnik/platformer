@@ -49,7 +49,7 @@
             this.createPlatform(x, y);
         }
 
-        this.hero = this.physics.add.sprite(100, 140, 'hero');
+        this.hero = this.physics.add.sprite(100, 160, 'hero');
         this.hero.setCollideWorldBounds(true);
         this.hero.setSize(30, 50);
         this.hero.body.setOffset(45, 52);
