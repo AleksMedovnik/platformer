@@ -1,6 +1,6 @@
 'use strict'
 
-import MainScene from "./scene/mainScene.js";
+// import MainScene from "./scene/mainScene.js";
 
 const main = document.getElementById('main');
 
