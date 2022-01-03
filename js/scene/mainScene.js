@@ -9,27 +9,27 @@ export default class MainScene extends Phaser.Scene {
         this.load.image('bg', 'img/bg.jpg');
 
         this.load.image('platform0', 'img/Platform/platform0.png');
-        this.load.image('platform1', '../../img/Platform/platform1.png');
-        this.load.image('platform2', '../../img/Platform/platform2.png');
+        this.load.image('platform1', 'img/Platform/platform1.png');
+        this.load.image('platform2', 'img/Platform/platform2.png');
 
-        this.load.spritesheet('coin', '../../img/coin/coin.png', {
+        this.load.spritesheet('coin', 'img/coin/coin.png', {
             frameWidth: 128,
             frameHeight: 126
         });
 
-        this.load.spritesheet('hero', '../../img/Player/hero/hero.png', {
+        this.load.spritesheet('hero', 'img/Player/hero/hero.png', {
             frameWidth: 128,
             frameHeight: 126
         });
-        this.load.spritesheet('hero_run', '../../img/Player/hero_run/hero_run.png', {
+        this.load.spritesheet('hero_run', 'img/Player/hero_run/hero_run.png', {
             frameWidth: 128,
             frameHeight: 126
         });
-        this.load.spritesheet('hero_jump', '../../img/Player/hero_jump/hero_jump.png', {
+        this.load.spritesheet('hero_jump', 'img/Player/hero_jump/hero_jump.png', {
             frameWidth: 128,
             frameHeight: 126
         });
-        this.load.spritesheet('hero_spawn', '../../img/Player/hero_spawn/hero_spawn.png', {
+        this.load.spritesheet('hero_spawn', 'img/Player/hero_spawn/hero_spawn.png', {
             frameWidth: 128,
             frameHeight: 126
         });
