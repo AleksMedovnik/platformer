@@ -1,14 +1,14 @@
 'use strict'
 
-/* export default */ class MainScene extends Phaser.Scene {
+export default class MainScene extends Phaser.Scene {
     constructor() {
         super('MainScene');
     }
 
     preload() {
-        this.load.image('bg', '../../img/bg.jpg');
+        this.load.image('bg', 'img/bg.jpg');
 
-        this.load.image('platform0', '../../img/Platform/platform0.png');
+        this.load.image('platform0', 'img/Platform/platform0.png');
         this.load.image('platform1', '../../img/Platform/platform1.png');
         this.load.image('platform2', '../../img/Platform/platform2.png');
 
