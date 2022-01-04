@@ -3,6 +3,8 @@
 export default class MainScene extends Phaser.Scene {
     constructor() {
         super('MainScene');
+        this.life = false;
+        this.flow = 3;
     }
 
     preload() {
@@ -33,10 +35,15 @@ export default class MainScene extends Phaser.Scene {
             frameWidth: 128,
             frameHeight: 126
         });
+
+        this.load.image('sea', 'img/sea.png');
     }
 
     create() {
-        this.add.image(400, 300, 'bg').setScale(2);
+        this.add.image(400, 270, 'bg').setScale(2);
+
+        this.sea_1 = this.add.tileSprite(0, -30, 1000, 600, 'sea')
+            .setOrigin(0, 0);
 
         this.platforms = this.physics.add.staticGroup();
         this.createPlatform = (x, y) => {
@@ -45,11 +52,11 @@ export default class MainScene extends Phaser.Scene {
                 x += 50;
             }
         }
-        for (let i = 0, x = 50, y = 240, dx = 150, dy = 100; i < 6; x += dx, y += dy, dy = -dy, i++) {
+        for (let i = 0, x = 50, y = 240, dx = 150, dy = 110; i < 6; x += dx, y += dy, dy = -dy, i++) {
             this.createPlatform(x, y);
         }
 
-        this.hero = this.physics.add.sprite(100, 160, 'hero');
+        this.hero = this.physics.add.sprite(100, 180, 'hero');
         this.hero.setCollideWorldBounds(true);
         this.hero.setSize(30, 50);
         this.hero.body.setOffset(45, 52);
@@ -100,8 +107,11 @@ export default class MainScene extends Phaser.Scene {
                 .refreshBody()
                 .anims.play('coin', true);
 
-            this.physics.add.overlap(this.hero, coin, () => coin.destroy())
+            this.physics.add.overlap(this.hero, coin, () => coin.destroy());
         }
+
+        this.sea_2 = this.add.tileSprite(0, 50, 2000, 600, 'sea')
+            .setOrigin(0, 0);
 
         this.cursor = this.input.keyboard.createCursorKeys();
 
@@ -113,7 +123,7 @@ export default class MainScene extends Phaser.Scene {
 
         // Hero Control
         if (this.cursor.up.isDown && this.hero.body.touching.down) {
-            this.hero.setVelocityY(-400);
+            this.hero.setVelocityY(-420);
         } else if (this.cursor.left.isDown) {
             this.hero.setVelocityX(-300);
             this.hero.setFlipX(true);
@@ -136,6 +146,10 @@ export default class MainScene extends Phaser.Scene {
                 this.hero.anims.play('jump', true);
             }
         }
+        if (this.sea_2.tilePositionX > 1995 || this.sea_2.tilePositionX < 0) {
+            this.flow = -this.flow;
+        }
+        this.sea_2.tilePositionX += this.flow;
     }
 
 }
