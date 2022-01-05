@@ -56,7 +56,7 @@ export default class MainScene extends Phaser.Scene {
             this.createPlatform(x, y);
         }
 
-        this.hero = this.physics.add.sprite(100, 180, 'hero');
+        this.hero = this.physics.add.sprite(100, 170, 'hero');
         this.hero.setCollideWorldBounds(true);
         this.hero.setSize(30, 50);
         this.hero.body.setOffset(45, 52);
@@ -84,8 +84,6 @@ export default class MainScene extends Phaser.Scene {
             frameRate: 20,
             repeat: 0
         });
-        this.hero.anims.play('respawn', true);
-        setTimeout(() => this.life = true, 1000); // !
 
 
         this.anims.create({
@@ -121,7 +119,7 @@ export default class MainScene extends Phaser.Scene {
 
     update() {
 
-        // Hero Control
+        // Hero Controls
         if (this.cursor.up.isDown && this.hero.body.touching.down) {
             this.hero.setVelocityY(-420);
         } else if (this.cursor.left.isDown) {
@@ -135,7 +133,11 @@ export default class MainScene extends Phaser.Scene {
         }
 
         // Hero Animations 
-        if (this.life) {
+        if (!this.life) {
+            this.hero.setPosition(100, 180);
+            this.hero.anims.play('respawn', true);
+            setTimeout(() => this.life = true, 1000);
+        } else {
             if (this.hero.body.touching.down) {
                 if (this.cursor.left.isDown || this.cursor.right.isDown) {
                     this.hero.anims.play('run', true);
@@ -146,6 +148,13 @@ export default class MainScene extends Phaser.Scene {
                 this.hero.anims.play('jump', true);
             }
         }
+
+        // if Hero falls into the water -> respawn!
+        if (this.hero.y > 550) {
+            this.life = false;
+        }
+
+        // flow
         if (this.sea_2.tilePositionX > 1995 || this.sea_2.tilePositionX < 0) {
             this.flow = -this.flow;
         }
