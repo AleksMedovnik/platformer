@@ -9,15 +9,39 @@
         content="width=device-width, initial-scale=1.0">
     <script src="./js/phaser.min.js"></script>
     <script src="./js/main.js"
-        defer type="module"></script>
+        defer
+        type="module"></script>
     <title>Dude</title>
     <style>
+        /* neucha-regular - latin */
+        @font-face {
+            font-family: 'Neucha';
+            font-style: normal;
+            font-weight: 400;
+            src: url('./fonts/neucha-v12-latin-regular.eot');
+            /* IE9 Compat Modes */
+            src: local(''),
+                url('./fonts/neucha-v12-latin-regular.eot?#iefix') format('embedded-opentype'),
+                /* IE6-IE8 */
+                url('./fonts/neucha-v12-latin-regular.woff2') format('woff2'),
+                /* Super Modern Browsers */
+                url('./fonts/neucha-v12-latin-regular.woff') format('woff'),
+                /* Modern Browsers */
+                url('./fonts/neucha-v12-latin-regular.ttf') format('truetype'),
+                /* Safari, Android, iOS */
+                url('./fonts/neucha-v12-latin-regular.svg#Neucha') format('svg');
+            /* Legacy iOS */
+        }
+
         body {
             margin: 0;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            font-family: 'Neucha';
+            font-style: normal;
+            font-weight: 400;
         }
     </style>
 </head>

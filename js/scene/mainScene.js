@@ -1,11 +1,6 @@
 'use strict'
 
 export default class MainScene extends Phaser.Scene {
-    constructor() {
-        super('MainScene');
-        this.life = false;
-        this.flow = 3;
-    }
 
     preload() {
         this.load.image('bg', 'img/bg.jpg');
@@ -40,6 +35,10 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create() {
+        this.life = false;
+        this.flow = 3;
+        this.score = 0;
+
         this.add.image(400, 270, 'bg').setScale(2);
 
         this.sea_1 = this.add.tileSprite(0, -30, 1000, 600, 'sea')
@@ -85,6 +84,11 @@ export default class MainScene extends Phaser.Scene {
             repeat: 0
         });
 
+        this.scoreText = this.add.text(150, 10, 'Score: 0', {
+            fontFamily: 'Neucha',
+            fontSize: '32px',
+            fill: 'gold'
+        });
 
         this.anims.create({
             key: 'coin',
@@ -105,7 +109,11 @@ export default class MainScene extends Phaser.Scene {
                 .refreshBody()
                 .anims.play('coin', true);
 
-            this.physics.add.overlap(this.hero, coin, () => coin.destroy());
+            this.physics.add.overlap(this.hero, coin, () => {
+                coin.destroy();
+                this.score++;
+                this.scoreText.setText('Score: ' + this.score);
+            });
         }
 
         this.sea_2 = this.add.tileSprite(0, 50, 2000, 600, 'sea')
